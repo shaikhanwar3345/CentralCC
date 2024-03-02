@@ -1,0 +1,62 @@
+
+
+***HyperVisor***
+Defination:
+ Hypervisor is a piece of software or firmware that creates and run virtual machine. A Hypervisor is sometimes also called as virtual machine manager(VMM)
+ 
+Hypervisor are of two types:
+Type1- Hypervisor / Bare metal or native Hypervisor:
+Defination:
+   *Also called as bare metal Hypervisor. Type-1 hypervisor run directly on the system hardware. A guest OS runs on the level above the hypervisor.
+   *Vmware ESXi is a type-1 Hypervisor that runs on the host server hardware without an underlying O.S
+   *Type-1 hypervisor act as there own operating system
+   *ESXi provides a virtualization layer that abstracts the CPU, storage, memory and netwokring resources of the physical host into multiple virtual machine.
+Type2- Hypervisor or hosted type:
+Defination:
+    *Hypervisor that runs within a conventional OS enviorment, and the host OS provided.
+    *Example of type-2 hypervisor are VMware workstation, Oracle virtualBox, and microsoft virtual pc
+    *It does not have direct access to the host hardware and resources
+
+***What is Vpshere 6.5/6.7
+   Vmware vsphere is the brand name for Vmware suite of virtualization products. Previously Vmware suite is called as vmware infrastructure.
+  Vmsphere includes following components
+  VMware ESXi
+ Vcenter server
+ Vsphere client
+ Vpshere web client
+Other feature includes- vmotion, High availability, distributed resource scheduler(DRS), fault tolerance 
+
+Difference between vpshere client and vcenter server
+
+*vsphere client is a GUI used to connect remotely to an ESXi host from windows PC
+*This client can be used to access and manage virtual machine on the ESXi host and also perform other management and configuration tasks.
+*if we want to have all the ESXi host in a single console then we need vcenter server.
+*Vcenter server is similar to vshpere client but it comes with rich features and more power. It is the centralized management tool
+*Multiple Esxi host and Vm can be managed from single console whereas using vsphere client we were accessing only a single host
+*Vcenter 6.7 includes a flash and a HTML5 based interface
+Migration is the technique of moving a virtual machine from one host to another host or from one datastore to another datastore
+There are 5 major types of migration in Vmware
+*Cold migration:
+ Movement of virtual machine to another host in powered-off state
+ Vm must be powered off during migration
+ Cold migration are flexible than vmotion
+ Cold migration can be used to move a virtual machine between data centers,as long as both data centers are on the same vcenter server instance
+ chances of failure is less in cold migration in comparison to hot migration
+*Suspended migration:
+ Migration a virtual machine that is in suspended state
+ Suspended state is like paused state in which you resume from same point on later stage
+ Suspended and vmotion migration are considered hot because in both migration the virtaul machine is running
+ the primary reason to suspend a virtual machine on an ESXi host is for troubleshooting
+*vmotion:
+ Migrating a virtual machine that is in poweredon state this is very useful as this does not cause any downtime for the VM
+ In VMware Vmotion machine is migrated from one ESXi host to another in vmotion machine is migrated from one datastore to another datastore in powered on state
+ vmotion moves a running virtual machine to a different ESXi host in the same cluster
+ It is also known as live migration
+*physical to virtual (P2V)
+ P2V migration converts a physical computer to virtual one
+for eg: You have a webserver running on physical hardware you can run VMware vcenterconverter, target the webserver and have a copy of the physical servre created on a ESXi host
+*Virtual to virtual (V2V)
+ V2V migration are exactly like P2V migration except that the source machine is already a virtual machine
+For eg: Migrating from hyper-V and Vmware workstation to ESXi would be considered a V2V migration
+Note: Datastore stores virtual machine files, log files, virtual disk and ISO image.Two types -VMFS and NFS
+
