@@ -60,3 +60,39 @@ for eg: You have a webserver running on physical hardware you can run VMware vce
 For eg: Migrating from hyper-V and Vmware workstation to ESXi would be considered a V2V migration
 Note: Datastore stores virtual machine files, log files, virtual disk and ISO image.Two types -VMFS and NFS
 
+***High availability and fault tolerance***
+ In High availability, when the host crashes or fails, the VM gets restarted on another host, So there is a very small downtime which is only related to the time taken for the VM to restart
+ Automatic detection of server failure... H.A. is a complete automated process and does not need any admin interference as there is no time to recover machine if host is about to crash
+ No passive standby ESXi host is required neither any extra VM, The VM for which its parent host is crashing it can restart on any of the other running host.
+ H.A. does not use Vmotion
+ Enable H.A on the cluster setting, inorder to use H.A
+ For H.A, also we need the following things
+>Cluster
+>Shared storage
+>Vcenter server configured for the enviroment
+Before H.A was avilable, the failure of a single ESXi host meant that a large number of virtual machine that were running on it would be down, This was reffered to as the "all of your eggs are in one basket", issue and caused some companies not to deploy virtual servers
+ Resource check- Ensure that capacity is always available in order to restart all virtual machines affected by server failure, H.A continuosly monitors capacity, utlization and reserve spare capacitu to be able to restart virtual machine.
+***Pre-requiste for VMware Vsphere H.A***
+ All host must be licensed from Vmware H.A
+ You need at least two host in the cluster
+ All host need a unique host name. And all host need to be configured with static IP address if you are using DHCP, you must ensure that the address for each host present across restart.
+ Virtual machine must be located on shared not local storage, otherwise they cannot be failed over in case of a host failure
+ All host in a VMware H.A cluster must have DNS configured
+ H.A works on the master and slave architecture when you enable H.A. on the cluster then election process occurs between all the host in the cluster and one host which has larger number of datastore mounted has an chance to become the master sever once the election process complete, there will be one master sever and other ESXi are consider as the slave server if the master server goes down or crashes then the new election process will occur.
+***H.A. Failover time***
+ We measured the time from the point Vcenter server, VM stopped responding to the point Vsphere web client started responding to user activity again with the 64host/600VM invertory, the total time is around 460 second (approx. 7 mins), with about 30-40 sec for H.A. to get into action.
+ H.A. works on the ESXi host level, Where if any of the ESXi host gets failed, H.A will restart these VM onto another ESXi host.
+***Fault tolerance***
+Aim of fault tolerance is similar to H.A. but in terms of availability it provides 0% downtime and full availability as machine does not down or restart
+ This is meant for critical application/server, eg: Autopilot system
+ Vmware lockstep technology is used in Fault tolerance
+ With F.T a secondary VM is created on another host using distributed resource scheduler. This Vm is exact replicate of the primary VM
+ A F.T virtual machine and its secondary copy are not allowed to run on the same host, This restriction ensures that a host failure cannot result in the loss of both VM
+ Primary and secondary work in lockstep i.e the lockstep technolgy captures the current state and event of the primary VM and sends them to secondary VM if primary goes down instantly secondary VM takes over and continue operation
+ It requires extra standby VM, therefore it is a costly solution
+  Fault tolerance avoid "split brain" situation which can leads to two active copies of a VM after recovery from the failure
+ F.T works on VM level therefore you can enable or disable FT on VM
+ The primary and secondary VM continously exchange hearbeats this exchange allows the VM pair to monitor the status of one another to ensure that FT is continually maintained
+***Virtual machine template***
+  You can convert a fully configured virtual machine into a virtual machine template
+ THis can be used to rapidly deploy large number of new VM that are configured like the original VM
