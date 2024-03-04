@@ -96,3 +96,21 @@ Aim of fault tolerance is similar to H.A. but in terms of availability it provid
 ***Virtual machine template***
   You can convert a fully configured virtual machine into a virtual machine template
  THis can be used to rapidly deploy large number of new VM that are configured like the original VM
+***Distributed resource scheduler***
+ DRS is a feature of cluster which is managed by vcenter server.It balances load of VM across ESXi host
+ A DRS enabled cluster has following resouce management capabilities:
+>Initial VM Placement
+>Load balancing
+>Power management
+ Depending on how end-users are using applications on virtual machines,  VMs constantly expands & contracts throughout the day, week or month the physical hosts becomes over utilized or under utilized based on VM utilization and number of VM running over it
+ Vmotion is a primary request for DRS
+**Main goal of DRS is to
+  Keep all ESxi servers in the cluster healthy and well utilized by dynamically/automatically moving VMs across the ESXi host
+ Provide Vms with enough resources all the time to keep them running in most efficient ways
+ Conduct Zero-downtime server maintenance
+ By default, DRS checks in every 5 minutes to see if the clusters workload is balanced or not
+There are three selections regarding the automation level of the DRS cluster:
+>Manual- When a DRS cluster is set to manual, every time you power on a VM, the cluster prompts you to select the ESxi host where that VM should be hosted
+>Partially automated: If you select the partially automated setting in the DRS automation settings DRS will make an automatic decision about which host a VM should run on when it is initially powered ON(without prompting the user who is performing the power-on task) but will still prompt for all migration on the DRS lab
+thus, initial VM placement is automated but migration are still manual
+>Fully automated: The third setting for the DRS is fully automated This setting makes decision for initial placement without prompting and also makes automatic vmotion decision based on the selected automation level
