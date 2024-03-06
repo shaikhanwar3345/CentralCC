@@ -7,3 +7,10 @@
 > Before docker, many users faces the problem that a particular code is running in the developer's system but not in the user's system
 > Docker was first release in march 2013, it is developed by solomon hykes.
 > Docker is a set of platform as a service that uses OS level virtualization whereso VMware uses hardware level virtualization
+
+***Disadvantages of docker:
+>Docker is a good application that rquires rich GUI
+>Difficult to manage large amount of containers
+>Docker does not provide cross-platform compatibility means if an application is designed to run in a docker container on windows, then it can't run on linux or vice-versa
+>Docker is suitable when the development OS and testing OS are same if the OS is diffrent, we should use VM
+>No solution for data recovery and backup
