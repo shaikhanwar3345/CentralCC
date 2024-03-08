@@ -14,3 +14,4 @@
 >Docker does not provide cross-platform compatibility means if an application is designed to run in a docker container on windows, then it can't run on linux or vice-versa
 >Docker is suitable when the development OS and testing OS are same if the OS is diffrent, we should use VM
 >No solution for data recovery and backup
+Just did some change---will delete this line later
