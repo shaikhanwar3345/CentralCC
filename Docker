@@ -14,4 +14,34 @@
 >Docker does not provide cross-platform compatibility means if an application is designed to run in a docker container on windows, then it can't run on linux or vice-versa
 >Docker is suitable when the development OS and testing OS are same if the OS is diffrent, we should use VM
 >No solution for data recovery and backup
-Just did some change---will delete this line later
+
+***Components of docker***
+Docker Daemon:
+ -Docker daemon runs on the host O.S
+ -It is responsible for running containers to manages docker services
+ -Docker daemon can communicate with other daemons
+Docker Client:
+ -Docker users can interact with docker daemon  through a client
+ -Docker client uses commands and Rest API to communicate with the docker daemon
+ -When a client runs any server command on the docker client terminal, the client terminal sends these docker commands to the docker daemon
+ -It is possible for docker client to communicate with more than one daemon
+Docker host
+ -Docker host is used to provide an enviroment to execute and run applications. It contains the docker daemon, images, containers, networks and storages
+Docker Hub/Registry
+ -Docker registry manages and stores the docker images
+There are two types of registries in docker
+*Public Registry- Public registry is also called as docker hub
+*Private registry- Private is use to store image within the enterprise
+Docker Images:
+ -Docker images are the read only binary template used to create docker container
+ or single file with all dependecies and configuration required to run a program
+
+****ways to create a images
+.Take image from docker hub
+.Create image from docker file
+.Create image from existing docker containers
+Docker Container
+ -Container hold the entire packages that is needed to run the application
+ In other words, we can say that, the images is a template and the contaimer is a copy of the template
+ -Container is like a virtual machine
+ -Images becomes container when they run on docker engine
