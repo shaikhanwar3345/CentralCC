@@ -1,0 +1,16 @@
+Docker Components and Different Commands
+
+DockerFile*****
+   Dockerfile is basically a text file. It contains some set of instruction.
+ Automation of docker image creation
+Docker Components***
+ FROM - for base image, this command must be on top of the dockerfile
+ RUN -  To execute commands, it will create a layer in image
+ MAINTAINER - Author/Owner/Descriptons
+ COPY - Copy file from local system (docker VM) we need to provide source, destination (We can't download file from internet and any remote repo.
+ ADD - similar to Copy but, it provides a feature to download files from internet, also we extract file at docker image side.
+ EXPOSE - To expose parts sush as port 8080 for one port to anoter
+ WORKDIR - to set working directory for a container
+  CMD - execure commnads but during container creat
+ ENTRYPOINT- Similar to CMD, but has higher priority over CMD, first commands will be executed by ENTRYPOINT only
+ ENV - Environment variable
