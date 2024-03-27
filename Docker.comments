@@ -14,3 +14,24 @@ Docker Components***
   CMD - execure commnads but during container creat
  ENTRYPOINT- Similar to CMD, but has higher priority over CMD, first commands will be executed by ENTRYPOINT only
  ENV - Environment variable
+
+Docker volumns and how to share it
+ - Volume is simply a directory	inside our container
+ - Firstly, we have to declare this directory as a volume and then share volume
+ - Even if we stop container, still we can access volumne
+ - Volume will be created in one container
+ - You can declare a directory as a volume only while creating a container'
+ - You can share one volume across any number of container
+ - Volumne will not ne included when we update an image
+***Benefits of volume***
+ - Decoupling container from storage
+ - Share volume among different container
+ - Attach volume to containers
+ - On deleting container volume does not delete
+
+
+Some ways to create volume:
+ lets we want to create a volume with a container named "Container1"
+****docker run -it --name container1 -v /volume1 ubuntu /bin/bash (to create a container with a volume)
+****docker run -it --name container2 --privileged=true --volumes-from container1 ubuntu /bin/bash(To copy the volume from container1 to container2)
+****docker run -it --name container3 -v C:/Users/ashai2/Documents/Project/TP:/anwar --privileged=true ubuntu /bin/bash (to create a volume from local to container)
