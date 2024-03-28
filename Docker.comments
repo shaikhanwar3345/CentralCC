@@ -35,3 +35,21 @@ Some ways to create volume:
 ****docker run -it --name container1 -v /volume1 ubuntu /bin/bash (to create a container with a volume)
 ****docker run -it --name container2 --privileged=true --volumes-from container1 ubuntu /bin/bash(To copy the volume from container1 to container2)
 ****docker run -it --name container3 -v C:/Users/ashai2/Documents/Project/TP:/anwar --privileged=true ubuntu /bin/bash (to create a volume from local to container)
+***Docker Port Expose***
+ Difference between docker attach and docker exec:
+ Docker exec creates a new process in the container's environment while docker attach just connect the standrad Input?output of the main process inside the container to corresponding standard input/output error of current terminal
+ Docker exec is spcifically for running new things in a already started container be t a shell or some other process.
+***What is the difference between  expose and publish a docker?
+Basically you have three options:-
+1.Neither specify expose nor -p
+2.Only specify exopse
+3.Specify expode and -p
+-If you specify neither **expose** nor **-p**, the service in the container will only be accessible from inside the container itself
+-If you expose a port, the service in the container is not accessible from outside docker, but from inside other docker containers, so this is good for inter-container communication.
+-If you *expose* and *-p* a port, the service in the container is accessible from anywhere,even outside the container
+-if you do *-p* but do not *expose* docker does an implicit expose. This is because if a port is open to the public, it is automatically also open to the other docker containers
+Hence *-p* includes *expose*
+Some IMP commands for docker***
+Stop all running containers : docker stop $(docker ps -a -q)
+Delete all stopped containers: docker rm $(docker ps -a -q)
+Delete all images : docker rmi -f $(docker images -q)
