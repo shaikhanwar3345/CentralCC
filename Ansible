@@ -1,0 +1,15 @@
+                                     ***Ansible***
+Defination: Ansible is an open source IT configuration management, Deployment and Orchestration tool. It amin to provide large productivity gains to a wide variety of automation challenges.
+Terms used in Ansible
+***Ansible server: The machine where ansible is installed and from which all tasks and playbook will be ran
+***Module: Basically a module is a command or set of similar commands meant to be executed on the client-side
+***Task: A task is a section that consists of a single procedure to be completed
+***Role: A way of organising tasks and related files to be later called in a playbook
+***Fact: Informatiom fetched from the client system from the global variables with the gather-facts operation
+***Inventory: File containing data about the ansible cleine servers
+***Play: Execution of playbook
+***Handler: Task which is called only if  a notifer is present
+***Notifier: Section attributed to a task which calls a handler if the output is changed
+***Playbooks: It consist code in YAML format, which describe tasks to be executed
+***Host: Nodes, which are automated by ansible
+
