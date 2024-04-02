@@ -12,4 +12,15 @@ Terms used in Ansible
 ***Notifier: Section attributed to a task which calls a handler if the output is changed
 ***Playbooks: It consist code in YAML format, which describe tasks to be executed
 ***Host: Nodes, which are automated by ansible
+*
+*
+*                                  ****Ad-hoc Commands***
+- Ad-hoc Commands are commands which can be run individually to perform quick functions
+- These ad-hoc commands are not used for configuration management and deployment, because this commands are of one time usage.
+- The ansible ad-hoc commands uses the "/usr/bin/ansible", commands line tool to automate a single task
 
+                                   ****Ansible Modules****
+- Ansible ships with a number of modules (called module library), than can be executed directly or remote hosts or through playbooks
+- Your library of modules can reside on any manchine, and there are no servers, domains, or data bases required.
+- Where ansible modules shared
+The default location for the inventory file is /etc/ansible/hosts
