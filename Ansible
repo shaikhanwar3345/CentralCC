@@ -18,9 +18,70 @@ Terms used in Ansible
 - Ad-hoc Commands are commands which can be run individually to perform quick functions
 - These ad-hoc commands are not used for configuration management and deployment, because this commands are of one time usage.
 - The ansible ad-hoc commands uses the "/usr/bin/ansible", commands line tool to automate a single task
+Examples of adhoc commands***
+ ansible demo -a "ls"
+ ansible all -a "ls -al"
+ ansible demo[1] -a "touch file1"
+ ansible demo -a "sudo yum install httpd -y"/ ansible demo -ba "yum install httpd -y"
 
                                    ****Ansible Modules****
 - Ansible ships with a number of modules (called module library), than can be executed directly or remote hosts or through playbooks
 - Your library of modules can reside on any manchine, and there are no servers, domains, or data bases required.
 - Where ansible modules shared
 The default location for the inventory file is /etc/ansible/hosts
+Example of module commands***
+ ansible demo -b -m yum -a"pkg =httpd state=present", (-m is to denote module and the word next to -m is is the module)
+ ansible demo -b -m copy -a "src = file5 dest =/tmp"
+
+                                 ***Ansible Playbooks***
+
+--- # Code for playbook
+- hosts: demo
+  user: ansible
+  become: yes
+  connection: ssh
+  tasks:
+           - name: httpd
+             action: yum name=httpd state=install
+
+
+
+--- # Code using varibale
+-hosts: demo
+ user: ansible
+ become: yes
+ connection: ssh
+ vars:
+        pkgname: httpd 
+ tasks:
+       - name: httpd installing in nodes
+         action: yum name='{{pkgname}}' state=install
+
+
+--- # Code for loops
+- hosts: demo
+  user: ansible
+  become: yes
+  connection: ssh
+  tasks: 
+        - name: Running loops
+          user: name={{item}} state=present
+          with_items:
+                     - anwar
+                     - name2
+                     - name3
+
+
+
+--- # Playbook using handlers
+- hosts: demo
+  user: ansible
+  become: yes
+  connection: ssh
+  tasks:
+           - name: Dowloading httpd
+             action: yum name=httpd state:present
+             notify:httpd restart
+  handlers:
+           -name: httpd restart
+            action: service name:httpd state:restart
